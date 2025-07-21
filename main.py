@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 from sys import exit, argv
+import config
 
 if len(argv) <= 1:
     print("No prompt provided") 
@@ -23,14 +24,18 @@ messages = [
 ]
 
 response = client.models.generate_content(
-    model='gemini-2.0-flash-001', contents=messages
+    model=config.model_name,
+    contents=messages,
+    #config=types.GenerateContentConfig(system_instruction=config.system_prompt),
+    config = config.agent_config
 )
-print(response.text)
+
+for function_call in response.function_calls:
+    print(f"Calling function: {function_call.name}({function_call.args})")
 
 if verbose:
     print(f"User prompt: {prompt}")
     print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
     print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
-
 
 
