@@ -22,20 +22,6 @@ def get_file_content(working_directory, file_path):
         return f'Error reading file "{file_path}": {e}'
     
 
-# schema_get_file_content = types.FunctionDeclaration(
-#     name="get_file_content",
-#     description="Read file contents with the given file path, constrained to the working directory.",
-#     parameters=types.Schema(
-#         type=types.Type.OBJECT,
-#         properties={
-#             "file_path": types.Schema(
-#                 type=types.Type.STRING,
-#                 description="The file path, relative to the working directory.",
-#             ),
-#         },
-#     ),
-# )
-
 schema_get_file_content = types.FunctionDeclaration(
     name="get_file_content",
     description=f"Reads and returns the first {MAX_CHARS} characters of the content from a specified file within the working directory.",

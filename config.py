@@ -1,5 +1,6 @@
 MAX_CHARS = 10000
-model_name ='gemini-2.0-flash-001'
+model_name = 'gemini-2.0-flash-001'
+WORKING_DIR = "./calculator"
 system_prompt = """
 You are a helpful AI coding agent.
 
